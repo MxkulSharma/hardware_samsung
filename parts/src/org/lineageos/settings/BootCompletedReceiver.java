@@ -20,18 +20,28 @@ package org.lineageos.settings;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.util.Log;
 
 import org.lineageos.settings.doze.DozeUtils;
+import org.lineageos.settings.refreshrate.RefreshUtils;
 
 public class BootCompletedReceiver extends BroadcastReceiver {
     private static final boolean DEBUG = false;
-    private static final String TAG = "SAMSUNGParts";
+    private static final String TAG = "BootCompletedReceiver";
 
     @Override
     public void onReceive(final Context context, Intent intent) {
-        if (DEBUG)
-            Log.d(TAG, "Received boot completed intent");
-        DozeUtils.onBootCompleted(context);
+        if (intent == null) {
+            return;
+        }
+
+        if (intent.getAction().equals(Intent.ACTION_BOOT_COMPLETED)) {
+            if (DEBUG) {
+                Log.d(TAG, "Received boot completed intent");
+            }
+            DozeUtils.onBootCompleted(context);
+            RefreshUtils.initialize(context);
+        }
     }
 }
