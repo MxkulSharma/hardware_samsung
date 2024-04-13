@@ -29,12 +29,16 @@
  
  public class TileEntryActivity extends Activity {
      private static final String TAG = "TileEntryActivity";
+     private static final String REFRESH_TILE = "org.lineageos.settings.refreshrate.RefreshTileService";
  
      @Override
      protected void onCreate(@Nullable Bundle savedInstanceState) {
          super.onCreate(savedInstanceState);
          ComponentName sourceClass = getIntent().getParcelableExtra(Intent.EXTRA_COMPONENT_NAME);
          switch (sourceClass.getClassName()) {
+             case REFRESH_TILE:
+                 openActivitySafely(new Intent(this, RefreshActivity.class));
+                 break; 
              default:
                  finish();
                  break;
