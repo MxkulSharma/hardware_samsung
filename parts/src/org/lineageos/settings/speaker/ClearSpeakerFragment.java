@@ -27,7 +27,7 @@
  
  import androidx.preference.Preference;
  import androidx.preference.PreferenceFragment;
- import androidx.preference.SwitchPreference;
+ import androidx.preference.SwitchPreferenceCompat;
  
  import org.lineageos.settings.R;
  
@@ -42,7 +42,7 @@
  
      private Handler mHandler = new Handler(Looper.getMainLooper());
      private MediaPlayer mMediaPlayer;
-     private SwitchPreference mClearSpeakerPref;
+     private SwitchPreferenceCompat mClearSpeakerPref;
  
      @Override
      public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
